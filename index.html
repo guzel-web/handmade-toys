@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мастерская Александры — Вязаные друзья с характером и биографией</title>
+  <style>
+    :root {
+      /* Палитра с вашего изображения */
+      --color-slate: #596472;      /* 1. Темный сланцево-серый (текст, заголовки) */
+      --color-mist: #A9AEB6;       /* 2. Холодный светло-серый (рамки, второстепенный текст) */
+      --color-bg: #F3F4F6;         /* 3. Молочно-белый (основной фон) */
+      --color-pistachio: #A8C67E;  /* 4. Светлый фисташковый (бейджи, мягкие акценты) */
+      --color-moss: #5F8834;       /* 5. Глубокий травянисто-зелёный (кнопки, главные акценты) */
+      --color-moss-hover: #4d7029;
+      --color-white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-slate);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Шапка сайта */
+    header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid rgba(169, 174, 182, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--color-slate);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: var(--color-moss);
+      border-radius: 50%;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--color-moss);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--color-moss);
+      color: var(--color-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-moss-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1.5px solid var(--color-slate);
+      color: var(--color-slate);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-slate);
+      color: var(--color-white);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+
+    /* Первый экран (Hero) */
+    .hero {
+      padding: 64px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      background-color: rgba(168, 198, 126, 0.35);
+      color: var(--color-moss);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--color-slate);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      color: var(--color-mist);
+      font-weight: 500;
+    }
+
+    .photo-placeholder {
+      background-color: var(--color-white);
+      border: 2px dashed var(--color-mist);
+      border-radius: 16px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+      color: var(--color-mist);
+    }
+
+    /* Общие стили секций */
+    section {
+      padding: 64px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--color-slate);
+      opacity: 0.85;
+    }
+
+    /* Преимущества */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background-color: var(--color-white);
+      padding: 32px 24px;
+      border-radius: 14px;
+      border: 1px solid rgba(169, 174, 182, 0.25);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background-color: rgba(168, 198, 126, 0.3);
+      color: var(--color-moss);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* О мастере */
+    .about-box {
+      background-color: var(--color-white);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+      border: 1px solid rgba(169, 174, 182, 0.25);
+    }
+
+    .materials-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0 28px;
+    }
+
+    .materials-tags span {
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-mist);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Каталог */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .filter-btn {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-mist);
+      color: var(--color-slate);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--color-moss);
+      border-color: var(--color-moss);
+      color: var(--color-white);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background-color: var(--color-white);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(169, 174, 182, 0.25);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(89, 100, 114, 0.08);
+    }
+
+    .product-img {
+      height: 220px;
+      background-color: #eaedf0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: var(--color-mist);
+      font-size: 0.9rem;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-in-stock {
+      background-color: var(--color-pistachio);
+      color: #263814;
+    }
+
+    .status-order {
+      background-color: var(--color-white);
+      color: var(--color-slate);
+      border: 1px solid var(--color-mist);
+    }
+
+    .product-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-art {
+      font-size: 0.75rem;
+      color: var(--color-mist);
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .product-bio {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-bg);
+    }
+
+    .product-price {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--color-slate);
+    }
+
+    /* Этапы заказа */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background-color: var(--color-white);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(169, 174, 182, 0.25);
+    }
+
+    .step-num {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      background-color: var(--color-moss);
+      color: var(--color-white);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* Подвал и контакты */
+    footer {
+      background-color: var(--color-slate);
+      color: var(--color-white);
+      padding: 56px 0 32px;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .social-btn:hover {
+      background-color: var(--color-moss);
+    }
+
+    /* Модальное окно (Карточка товара) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(89, 100, 114, 0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background-color: var(--color-white);
+      max-width: 600px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-mist);
+    }
+
+    .modal-specs {
+      background-color: var(--color-bg);
+      padding: 16px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    .modal-specs p {
+      margin-bottom: 6px;
+    }
+
+    .addon-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Адаптивность для телефонов */
+    @media (max-width: 860px) {
+      .hero-grid, .about-box {
+        grid-template-columns: 1fr;
+      }
+      .features-grid, .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .features-grid, .catalog-grid, .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo"><span></span>Мастерская Александры</a>
+      <nav>
+        <a href="#features">О концепции</a>
+        <a href="#about">О мастере</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#steps">Как заказать</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a href="#contacts" class="btn btn-primary btn-sm">Написать мастеру</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="tag-pill">Ручная работа • Тактильный антистресс</span>
+        <h1>Вязаные друзья с характером и биографией</h1>
+        <p>Молчаливые напарники для детских приключений и карманные психотерапевты для уставших взрослых. Создаю игрушки, которые не хочется выпускать из рук.</p>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn btn-primary">Выбрать напарника</a>
+          <a href="#contacts" class="btn btn-outline">Заказать своего героя</a>
+        </div>
+        <div class="hero-note">✓ Паспорт персонажа в комплекте • ✓ Крафтовая упаковка</div>
+      </div>
+      <div class="photo-placeholder">
+        <strong>[Место для главного фото]</strong>
+        <p style="font-size: 0.85rem; margin-top: 8px;">Идеально подойдёт кадр, где игрушка сидит на рабочем столе рядом с ноутбуком и кружкой кофе</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Почему их не хочется выпускать из рук</h2>
+        <p>Три детали, которые превращают вязаную игрушку в особенный подарок</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">1</div>
+          <h3>Тактильный антистресс</h3>
+          <p>Плотная вязка из хлопка и утяжеление в лапках. Игрушку приятно мять в руках во время сложных созвонов или брать с собой в сон.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">2</div>
+          <h3>Секрет внутри</h3>
+          <p>По вашему желанию вшиваю внутрь мешочек с сушёной лавандой для спокойствия или капсулу с вашим личным пожеланием для получателя.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">3</div>
+          <h3>Паспорт и домик</h3>
+          <p>Каждый герой приезжает в подарочной коробке со свидетельством об усыновлении, куда можно вписать имя нового хозяина.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-box">
+        <div class="photo-placeholder" style="height: 300px;">
+          <strong>[Фото: Александра за работой]</strong>
+          <p style="font-size: 0.8rem; margin-top: 6px;">Живой кадр процесса вязания или эскизов</p>
+        </div>
+        <div>
+          <span class="tag-pill">Кто стоит за этими ушами</span>
+          <h2 style="margin-bottom: 14px;">Привет, я Александра — автор персонажей</h2>
+          <p style="margin-bottom: 12px;">Я не вяжу по скучным шаблонам одинаковых медведей. Каждый зверь начинается с настроения: кто-то получается задумчивым интровертом в шарфе, а кто-то — карманным оптимистом.</p>
+          <p>Для детей мои игрушки безопасны с первых лет жизни, а для взрослых становятся тёплой поддержкой на рабочем столе.</p>
+          <div class="materials-tags">
+            <span>100% мерсеризованный хлопок</span>
+            <span>Гипоаллергенный холлофайбер</span>
+            <span>Безопасные винтовые глазки</span>
+            <span>Утяжеляющий гранулят</span>
+          </div>
+          <a href="#catalog" class="btn btn-primary">Посмотреть свободных героев</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="container">
+      <div class="section-header">
+        <h2>Свободные персонажи и герои на заказ</h2>
+        <p>Выберите по настроению или задаче подарка. Нажмите «Подробнее», чтобы открыть паспорт героя.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">Все герои</button>
+        <button class="filter-btn" onclick="filterCatalog('in-stock', this)">В наличии</button>
+        <button class="filter-btn" onclick="filterCatalog('desk', this)">На рабочий стол (взрослым)</button>
+        <button class="filter-btn" onclick="filterCatalog('kids', this)">Для детей</button>
+      </div>
+
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+  </section>
+
+  <section id="steps">
+    <div class="container">
+      <div class="section-header">
+        <h2>Как друг доберётся до вашего дома</h2>
+        <p>От выбора персонажа до распаковки крафтовой коробки</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Выберите героя</h3>
+          <p>Откройте паспорт игрушки в каталоге и при желании добавьте аромат лаванды.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Напишите мне</h3>
+          <p>Перейдите в ВКонтакте или на Авито, чтобы обсудить детали и оформить заказ.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Подготовка (3–5 дней)</h3>
+          <p>Если игрушка под заказ, свяжу её с учётом ваших пожеланий по цвету шарфа или имени.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Бережная доставка</h3>
+          <p>Отправлю Авито Доставкой, СДЭК или Почтой России в коробке-домике с открыткой.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contacts">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <h2 style="margin-bottom: 8px;">Остались вопросы или нужна помощь с выбором?</h2>
+          <p style="opacity: 0.8;">Напишите мне в ВКонтакте или посмотрите объявления на Авито — помогу подобрать подарок под характер получателя.</p>
+        </div>
+        <div class="social-links">
+          <!-- ЗАГЛУШКА ССЫЛКИ ВКОНТАКТЕ: замените # на ваш адрес профиля или группы ВК -->
+          <a href="#" target="_blank" class="social-btn">ВКонтакте</a>
+          <!-- ЗАГЛУШКА ССЫЛКИ АВИТО: замените # на ваш адрес профиля Авито -->
+          <a href="#" target="_blank" class="social-btn">Авито</a>
+        </div>
+      </div>
+      <div style="margin-top: 24px; font-size: 0.85rem; opacity: 0.6; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <span>© Мастерская вязаных игрушек Александры</span>
+        <span>Отправка по всей России (Авито Доставка / СДЭК / Почта)</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModalBtn()">&times;</button>
+      <div class="product-art" id="mArt">Артикул: —</div>
+      <h2 id="mTitle" style="margin-bottom: 10px;">Название игрушки</h2>
+      <p id="mBio" style="margin-bottom: 16px;">Полная биография игрушки</p>
+
+      <div class="modal-specs">
+        <p><strong>Рост:</strong> <span id="mSize">—</span></p>
+        <p><strong>Состав:</strong> <span id="mMaterial">—</span></p>
+        <p><strong>Безопасность:</strong> <span id="mSafety">—</span></p>
+      </div>
+
+      <div style="margin: 16px 0;">
+        <strong>Дополнительные опции к заказу:</strong>
+        <label class="addon-option">
+          <input type="checkbox" id="optLavender" onchange="updateModalPrice()">
+          Добавить мешочек с лавандой внутрь (+150 ₽)
+        </label>
+        <label class="addon-option">
+          <input type="checkbox" id="optCard" checked>
+          Вложить открытку с моим текстом (бесплатно)
+        </label>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-bg);">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--color-mist);">Итоговая стоимость:</span>
+          <div id="mPrice" style="font-size: 1.4rem; font-weight: 700; color: var(--color-slate);">0 ₽</div>
+        </div>
+        <div class="modal-actions">
+          <!-- ЗАГЛУШКИ ДЛЯ КНОПОК ЗАКАЗА В КАРТОЧКЕ ТОВАРА -->
+          <a id="mOrderVk" href="#" target="_blank" class="btn btn-primary">Написать в ВК</a>
+          <a id="mOrderAvito" href="#" target="_blank" class="btn btn-outline">Заказать на Авито</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // База персонажей
+    const toys = [
+      {
+        id: 'A-01',
+        name: 'Лис Арчи, хранитель дедлайнов',
+        status: 'in-stock',
+        statusText: 'В наличии',
+        category: ['in-stock', 'desk'],
+        price: 3200,
+        size: '21 см сидя',
+        material: '100% хлопок, холлофайбер, утяжелитель в лапках',
+        safety: 'Винтовые глазки с заглушкой (от 3 лет)',
+        shortBio: 'Молча кивает, когда вы жалуетесь на работу. Любит карманы пальто и горячий чай.',
+        fullBio: 'Арчи — спокойный слушатель. Благодаря утяжелителю в лапках он уверенно сидит на краю рабочего стола рядом с монитором и помогает пережить самые сложные созвоны.'
+      },
+      {
+        id: 'B-02',
+        name: 'Ёж Иннокентий (на расслабоне)',
+        status: 'order',
+        statusText: 'Под заказ (3 дня)',
+        category: ['desk'],
+        price: 3500,
+        size: '16 см',
+        material: 'Фактурная пряжа «травка» + хлопок',
+        safety: 'Винтовые глазки (от 3 лет)',
+        shortBio: 'Специалист по ничегонеделанию. Напоминает, что иногда можно просто свернуться клубочком.',
+        fullBio: 'Иннокентий не колется, а наоборот — работает как мягкая массажная щетка для ладоней. Идеальный антистресс для тех, кто много работает за компьютером.'
+      },
+      {
+        id: 'C-03',
+        name: 'Кот Василий в шарфе',
+        status: 'in-stock',
+        statusText: 'В наличии',
+        category: ['in-stock', 'kids'],
+        price: 3900,
+        size: '24 см',
+        material: 'Мягкий полухлопок, гипоаллергенный наполнитель',
+        safety: 'Вышитые глазки — безопасно для малышей 0+',
+        shortBio: 'Охраняет детские сны от ночных шорохов и обожает путешествовать в рюкзаке.',
+        fullBio: 'У Василия полностью вышитая мордочка без пластиковых деталей, поэтому его можно смело дарить даже самым маленьким детям. Шарф снимается.'
+      },
+      {
+        id: 'D-04',
+        name: 'Зайчик Шалфей',
+        status: 'order',
+        statusText: 'Под заказ (4 дня)',
+        category: ['kids'],
+        price: 3600,
+        size: '26 см с ушками',
+        material: 'Хлопок, наполнитель холлофайбер',
+        safety: 'Вышитые глазки (0+)',
+        shortBio: 'Длинные уши созданы для того, чтобы за них было удобно носить друга по всей квартире.',
+        fullBio: 'Нежный, тактильный зайчик в природных спокойных тонах, который не создаёт визуального шума в детской комнате.'
+      },
+      {
+        id: 'G-07',
+        name: 'Воробей Чижик-Пыжик',
+        status: 'in-stock',
+        statusText: 'В наличии',
+        category: ['in-stock', 'desk'],
+        price: 2800,
+        size: '12 см (помещается в ладонь)',
+        material: 'Хлопок, стеклянный гранулят внутри',
+        safety: 'Винтовые глазки (от 3 лет)',
+        shortBio: 'Карманный оптимист. Помещается в ладонь и работает как приятный антистресс-мячик.',
+        fullBio: 'Самый компактный житель мастерской. Удобно брать с собой в поездки, класть в сумку или держать на столе.'
+      },
+      {
+        id: 'H-08',
+        name: 'Сова Клара, амбассадор ночи',
+        status: 'order',
+        statusText: 'Под заказ (4 дня)',
+        category: ['desk'],
+        price: 4500,
+        size: '22 см',
+        material: 'Хлопок, деревянные пуговицы для декора',
+        safety: 'Винтовые глазки (от 3 лет)',
+        shortBio: 'Не осуждает за третий кофе в 2 часа ночи. Идеальный подарок для «сов» и айтишников.',
+        fullBio: 'Клара понимающе смотрит большими глазами и молча поддерживает любые ночные творческие порывы или сдачу проектов.'
+      }
+    ];
+
+    let currentBasePrice = 0;
+
+    // Отрисовка каталога
+    function renderCatalog(filter = 'all') {
+      const grid = document.getElementById('catalogGrid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all'
+        ? toys
+        : toys.filter(t => t.category.includes(filter));
+
+      filtered.forEach(toy => {
+        const badgeClass = toy.status === 'in-stock' ? 'status-in-stock' : 'status-order';
+        const card = `
+          <div class="product-card">
+            <div class="product-img">
+              <span class="status-badge ${badgeClass}">${toy.statusText}</span>
+              <span>[Фото: ${toy.name}]</span>
+            </div>
+            <div class="product-body">
+              <div class="product-art">Артикул: ${toy.id}</div>
+              <h3 class="product-title">${toy.name}</h3>
+              <p class="product-bio">${toy.shortBio}</p>
+              <div class="product-footer">
+                <span class="product-price">${toy.price.toLocaleString('ru-RU')} ₽</span>
+                <button class="btn btn-outline btn-sm" onclick="openModal('${toy.id}')">Подробнее</button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.innerHTML += card;
+      });
+    }
+
+    // Переключение фильтров
+    function filterCatalog(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog(category);
+    }
+
+    // Открытие карточки товара
+    function openModal(id) {
+      const toy = toys.find(t => t.id === id);
+      if (!toy) return;
+
+      currentBasePrice = toy.price;
+
+      document.getElementById('mArt').innerText = `Артикул: ${toy.id} • ${toy.statusText}`;
+      document.getElementById('mTitle').innerText = toy.name;
+      document.getElementById('mBio').innerText = toy.fullBio;
+      document.getElementById('mSize').innerText = toy.size;
+      document.getElementById('mMaterial').innerText = toy.material;
+      document.getElementById('mSafety').innerText = toy.safety;
+      document.getElementById('optLavender').checked = false;
+
+      // ЗАГЛУШКИ ССЫЛОК В МОДАЛЬНОМ ОКНЕ: замените '#' на ваши ссылки ВК и Авито
+      document.getElementById('mOrderVk').href = '#';
+      document.getElementById('mOrderAvito').href = '#';
+
+      updateModalPrice();
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    // Пересчёт цены
+    function updateModalPrice() {
+      const hasLavender = document.getElementById('optLavender').checked;
+      const finalPrice = currentBasePrice + (hasLavender ? 150 : 0);
+      document.getElementById('mPrice').innerText = `${finalPrice.toLocaleString('ru-RU')} ₽`;
+    }
+
+    function closeModalBtn() {
+      document.getElementById('productModal').classList.remove('open');
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'productModal') closeModalBtn();
+    }
+
+    // Запуск при загрузке
+    renderCatalog();
+  </script>
+</body>
+</html>
