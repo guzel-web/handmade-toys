@@ -837,8 +837,11 @@
         const card = `
           <div class="product-card">
             <div class="product-img">
-              <span class="status-badge ${badgeClass}">${toy.statusText}</span>
-              <span>[Фото: ${toy.name}]</span>
+             <span class="status-badge ${badgeClass}">${toy.statusText}</span>
+             ${toy.image 
+                ? `<img src="${toy.image}" alt="${toy.name}" style="width: 100%; height: 100%; object-fit: cover;">` 
+                : `<span>[Фото: ${toy.name}]</span>`
+              }
             </div>
             <div class="product-body">
               <div class="product-art">Артикул: ${toy.id}</div>
